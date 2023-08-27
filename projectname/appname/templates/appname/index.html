@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Connect</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                height: 80vh;
+                margin: 0;
+            }
+    
+            a {
+                text-decoration: none;
+                padding: 10px;
+                background-color: #007bff;
+                color: white;
+                border-radius: 3px;
+                text-align: center;
+                cursor: pointer;
+                margin: 5px; /* Adjust the margin as needed */
+            }
+    
+            a:hover {
+                color: rgb(14, 13, 13);
+                background-color: rgb(112, 112, 150);
+            }
+    
+        </style>
+    </head>
+    <body>
+        
+        <a href="{% url 'login' %}" id="main">Create a new account.</a>
+        <br><br>
+        <a href="{% url 'form' %}" id="main">Already a User! Take your bank money?</a>
+
+    </body>
+</html>

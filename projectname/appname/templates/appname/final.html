@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Done!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            display: flex;
+            flex-direction: column; /* Display content in a column layout */
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #display {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        #go_home {
+            text-decoration: none;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 3px;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #go_home:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <p id="display"></p>
+
+    <div>
+        <script>
+            // Retrieve the value from local storage
+            var amount = localStorage.getItem('current_pay');
+
+            // Get the HTML element where you want to display the value
+            var displayElement = document.getElementById('display');
+
+            // Set the content of the element with the stored value
+            displayElement.textContent = 'Process success! Take your amount: Rs. ' + amount;
+        </script>
+        
+        <a href="{% url 'index' %}" id="go_home">Go home</a>
+    </div>
+</body>
+
+</html>

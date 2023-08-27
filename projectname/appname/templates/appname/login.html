@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'appname/styles.css' %}">
+    </head>
+
+    <body>
+
+        {% block content %}
+            <form action="{% url 'index' %}" method="post" onsubmit="return storevalues()" autocomplete="off">
+                {% csrf_token %}
+                <input type="text" name="name" id="user_name" placeholder="Enter your name:" required>
+                <input type="text" name="pin" id="user_pin" placeholder="ATM pin number:" required>
+                <input type="submit" value="Save">
+            </form>
+        {% endblock %}
+    
+    </body>
+    
+    <script>
+        function storevalues() {
+            var name = document.getElementById('user_name').value;
+            localStorage.setItem('login_name', name);
+            var pin = document.getElementById('user_pin').value;
+            localStorage.setItem('login_pin', pin);
+
+            if (!/^\d{6}$/.test(pin)) {
+                alert('PIN must be a 6-digit number and only in no.');
+                return false;
+            }
+            alert("Name and Pin are stored, Thank you!");
+            return true;    
+        }   
+    </script>
+
+</html>

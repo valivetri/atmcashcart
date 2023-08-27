@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'appname/styles.css' %}">
+</head>
+<body>
+    {% block content %}
+    <form action="{% url 'analyze' %}" method="post" onsubmit="return show_amount()" autocomplete="off">
+        {% csrf_token %}
+        <input type="number" id="user_amount" placeholder="Enter an amount:" required>
+        <input type="submit" value="Proceed">
+    </form>        
+    {% endblock %}
+</body>
+<script>
+    function show_amount() {
+        var amount = document.getElementById('user_amount').value;
+        localStorage.setItem('current_pay', amount);
+    }
+</script>
+</html>

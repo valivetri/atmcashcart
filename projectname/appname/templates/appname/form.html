@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Make Process</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'appname/styles.css' %}">
+    </head>
+
+    <body>
+
+        {% block content %}
+        <form action="{% url 'count' %}" method="post" autocomplete="off" onsubmit="return verifyvalues()">
+            {% csrf_token %}
+            <input type="text" id="enteredName" placeholder="Enter your name:" required>
+            <input type="password" id="enteredPin" placeholder="Enter your ATM pin no." required>
+            <input type="submit" value="Next">
+        </form>        
+        {% endblock %}
+    
+    </body>
+
+    <script>
+
+        function verifyvalues() {
+            var storedName = localStorage.getItem('login_name');
+            var enteredName = document.getElementById('enteredName').value;
+            var storedPin = localStorage.getItem('login_pin');
+            var enteredPin = document.getElementById('enteredPin').value;
+
+            if (enteredPin === storedPin && enteredName === storedName) {
+                return true; // Allow form submission
+            } else if (enteredPin !== storedPin) {
+                alert('Your pin is wrong!');
+                return false;
+            }else if (enteredPin !== storedPin) {
+                alert('Your pin is wrong!');
+                return false;
+            } else if (enteredName !== storedName) {
+                alert('Your name is incorrect!');
+                return false;
+            } else {
+                alert('User name and pin are incorrect, please try again');
+                return false; // Prevent form submission
+            }
+        }
+        
+    </script>
+
+</html>

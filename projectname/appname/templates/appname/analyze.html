@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'appname/styles.css' %}">
+</head>
+
+<body>
+    <p>Processing........ Please wait!</p>
+
+    <div id="redirectContainer" data-redirect-url="{% url 'final' %}"></div>
+
+    <audio id="myAudio" src="{% static 'appname/Atm.mp3' %}" autoplay loop></audio>
+
+    <script>
+        var audio = document.getElementById('myAudio');
+
+        var audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+        audioContext.resume().then(function() {
+            audio.play();
+        });
+        
+        setTimeout(function() {
+            var redirectUrl = document.getElementById('redirectContainer').getAttribute('data-redirect-url');
+            window.location.href = redirectUrl;
+        }, 5000); // 5000 milliseconds = 5 seconds
+    </script>
+</body>
+
+</html>
